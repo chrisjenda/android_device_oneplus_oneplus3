@@ -153,13 +153,14 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
 #TARGET_USES_HWC2 := true
 
 # Enable dexpreopt to speed boot time
-ifeq ($(HOST_OS),linux)
-  ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-    endif
-  endif
-endif
+#ifeq ($(HOST_OS),linux)
+#  ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
+#    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := false
+#    endif
+#  endif
+#endif
+DONT_DEXPREOPT_PREBUILTS := true
 
 # GPS
 TARGET_NO_RPC := true
@@ -214,7 +215,7 @@ BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
 USE_SENSOR_MULTI_HAL := true
 
 # Timeservice
-BOARD_USES_QC_TIME_SERVICES := true
+BOARD_USES_QC_TIME_SERVICES := false
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
